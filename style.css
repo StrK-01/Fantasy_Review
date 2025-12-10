@@ -1,0 +1,636 @@
+/* ==========================================================
+   FANTASY REVIEW STYLESHEET (HAND-DRAWN/SKETCH THEME)
+   ========================================================== */
+
+/* Import a handwriting/marker font */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+body {
+    /* Background color to match the paper/off-white look */
+    background: #fbf0e8; 
+    font-family: 'Permanent Marker', cursive;
+    margin: 0;
+    padding: 0;
+    color: #000; 
+}
+
+
+/* ===============================
+   Header & Sidebar
+   =============================== */
+.header {
+    background: #0088cc; /* Bright blue */
+    padding: 25px 50px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Changed to space-between for positioning the user indicator */
+    position: relative;
+    border-bottom: 5px solid #000;
+    /* Wobbly bottom border for the hand-drawn effect */
+    border-bottom-left-radius: 255px 15px;
+    border-bottom-right-radius: 15px 255px;
+}
+
+.menu-icon {
+    font-size: 45px; 
+    margin-right: 25px; 
+    cursor: pointer;
+    color: #fff;
+    user-select: none;
+}
+
+.title {
+    font-size: 45px; 
+    font-weight: normal;
+    color: #fff;
+    text-shadow: 2px 2px 0 #000; /* Subtle depth */
+    margin: 0;
+    line-height: 1;
+}
+
+.sidebar {
+    height: 100%; 
+    width: 0; 
+    position: fixed; 
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: #2c3e50; /* Darker blue/grey */
+    overflow-x: hidden; 
+    padding-top: 60px;
+    transition: 0.5s; 
+    box-shadow: 5px 0 10px rgba(0,0,0,0.5);
+}
+
+.sidebar.open {
+    width: 250px;
+}
+
+.sidebar a {
+    padding: 15px 8px 15px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fbf0e8;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #ffcc00; /* Yellow hover */
+    background-color: #34495e;
+}
+
+/* ===============================
+   Active Sidebar Link Highlight
+   =============================== */
+.sidebar a.active-link {
+    background-color: #0088cc; /* Blue background */
+    color: #fff; /* White text */
+    text-shadow: 1px 1px 0 #000;
+    font-weight: bold;
+    /* Add a slight border change to emphasize selection */
+    border-left: 5px solid #ffcc00; 
+}
+
+/* Ensure the active link doesn't lose its background on hover */
+.sidebar a.active-link:hover {
+    background-color: #0088cc; 
+    color: #fff;
+}
+
+
+/* ===============================
+   Typography & Layout Elements
+   =============================== */
+h2, h3 {
+    text-align: center;
+    text-decoration: underline 3px;
+    text-decoration-color: #0088cc;
+}
+
+.list-header {
+    margin: 25px 0;
+    padding-bottom: 5px;
+}
+
+.main-divider {
+    height: 5px;
+    background: #000;
+    margin: 25px 50px;
+    border-radius: 50%; /* Sketchy line look */
+    opacity: 0.1;
+}
+
+.no-reviews, .error-message, .loading-message {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 30px;
+    color: #555;
+}
+
+
+/* ===============================
+   Buttons & Links
+   =============================== */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px; 
+    margin: 30px 0;
+}
+
+.btn {
+    text-decoration: none;
+    text-align: center;
+    padding: 15px 25px; 
+    border: 3px solid black;
+    background: #0088cc; /* Blue */
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Permanent Marker', cursive;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
+
+    /* Hand-drawn/Wobbly border */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    box-shadow: 5px 5px 0 #000;
+    transform: translate(0, 0);
+}
+
+.btn:hover {
+    box-shadow: 2px 2px 0 #000;
+    transform: translate(3px, 3px);
+}
+
+.btn.add {
+    background: #ffcc00; /* Yellow for Add */
+    color: #000;
+}
+
+.btn.add:hover {
+    background: #ffdb4d;
+}
+
+.btn.view {
+    background: #00cc88; /* Green for View */
+    color: #000;
+}
+
+.btn.view:hover {
+    background: #33e699;
+}
+
+.btn.edit {
+    background: #3498db; /* Light blue for Edit */
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 15px;
+    box-shadow: 3px 3px 0 #000;
+}
+
+.btn.delete {
+    background: #e74c3c; /* Red for Delete */
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 15px;
+    box-shadow: 3px 3px 0 #000;
+}
+
+.btn.back-home {
+    display: block;
+    width: fit-content;
+    margin: 30px auto;
+    background: #95a5a6; /* Grey */
+    color: #000;
+}
+
+
+/* ===============================
+   Form Styling
+   =============================== */
+.form-box {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #fff;
+    border: 5px solid #000;
+    /* Sketchy rectangle border */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+.form-box label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 22px;
+}
+
+.form-box input[type="text"],
+.form-box input[type="number"],
+.form-box textarea,
+.search-form input[type="text"],
+.form-box input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    font-size: 18px;
+    border: 2px solid black;
+    /* Hand-drawn input box */
+    border-radius: 5px 20px 5px 20px;
+    font-family: Arial, sans-serif; /* Use a standard font for input/typing clarity */
+    background: #f9f9f9;
+}
+
+.form-box textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+.form-box button {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.search-form {
+    margin: 25px 50px; 
+    display: flex;
+    gap: 15px; 
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-form input[type="text"] {
+    flex: 1;
+}
+
+.search-form button {
+    /* Inherits button styling from .btn, but explicitly sets style to be safe */
+    padding: 15px 25px; 
+    border: 3px solid black;
+    background: #ffcc00; 
+    font-weight: normal;
+    cursor: pointer;
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    box-shadow: none;
+    transform: none;
+}
+
+.search-form button:hover {
+    background: #ffdb4d; 
+}
+
+/* ===============================
+   Account Page Button Styles
+   =============================== */
+.tab-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.tab-controls button {
+    /* Larger size and bold text for better visibility */
+    font-size: 22px; 
+    padding: 15px 30px; 
+    border: 3px solid #000;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.2s;
+    
+    /* Inherited styles for sketch look */
+    background: #fff;
+    color: #000;
+    box-shadow: 3px 3px 0 #000;
+    font-family: 'Permanent Marker', cursive;
+}
+.tab-controls button.active {
+    background: #ffcc00;
+    box-shadow: 0 0 0 #000;
+    transform: translate(3px, 3px);
+}
+.form-box.hidden {
+    display: none;
+}
+
+/* ===============================
+   Review Cards (All Reviews)
+   =============================== */
+.all-reviews {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 25px 50px;
+}
+
+.review-card {
+    width: calc(50% - 30px); /* Two cards per row default */
+    min-width: 300px;
+    display: flex;
+    align-items: flex-start;
+    padding: 25px;
+    background: #fff;
+    border: 4px solid #000;
+    /* Wobbly border for the card */
+    border-radius: 15px 225px 25px 255px / 255px 25px 225px 15px;
+    box-shadow: 8px 8px 0 #000;
+    transition: all 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 10px 10px 0 #000;
+}
+
+.review-card .info {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.review-card .card-title {
+    margin-top: 0;
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.review-card .card-review-text {
+    font-family: Arial, sans-serif; /* Readable font for long text */
+    font-size: 16px;
+    line-height: 1.4;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.review-card .stars {
+    color: #ffcc00; /* Yellow stars */
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.review-card .actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* ===============================
+   Ranking List (Home Page)
+   =============================== */
+.ranking-list {
+    max-width: 700px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+}
+
+.ranking-item {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 3px solid #000;
+    margin-bottom: 15px;
+    padding: 15px;
+    /* Sketchy item border */
+    border-radius: 20px 5px 20px 5px; 
+    box-shadow: 4px 4px 0 #000;
+}
+
+.ranking-item .poster-box {
+    width: 60px;
+    height: 90px;
+    margin-right: 20px;
+    overflow: hidden;
+    border: 2px solid #000;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+.ranking-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ranking-item .info {
+    flex-grow: 1;
+}
+
+.ranking-item .movie-name {
+    font-size: 25px;
+    margin: 0 0 5px 0;
+    line-height: 1.2;
+}
+
+
+/* ===============================
+   Modal Styling
+   =============================== */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.5); 
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.modal-content-box {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 30px 40px;
+    border: 5px solid #000;
+    width: 80%;
+    max-width: 450px;
+    /* Sketchy rectangle border */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    box-shadow: 8px 8px 0 #000;
+    text-align: center;
+}
+
+#modalContent {
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.modal-actions button {
+    /* Base button style cleanup for modal */
+    font-size: 18px;
+    padding: 10px 20px;
+    box-shadow: 3px 3px 0 #000;
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    transition: all 0.2s ease-in-out;
+}
+
+.modal-actions button:hover {
+    box-shadow: 1px 1px 0 #000;
+    transform: translate(2px, 2px);
+}
+
+/* OK/Confirm Button (for message and confirmation) */
+#modalConfirm {
+    background: #0088cc; /* Blue */
+    color: #fff;
+}
+#modalConfirm:hover {
+    background: #00aaff;
+}
+
+/* Cancel Button (only for confirmation) */
+#modalCancel {
+    background: #e74c3c; /* Red */
+    color: #fff;
+}
+#modalCancel:hover {
+    background: #ff6f61;
+}
+
+/* Error State styling */
+.modal.modal-error .modal-content-box {
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+.modal.modal-error #modalContent {
+    color: #e74c3c;
+}
+
+
+/* ===============================
+   Password Visibility Style
+   =============================== */
+
+/* Container to hold the input and the icon */
+.password-container {
+    position: relative;
+    width: 100%;
+    margin-top: 5px; /* Adjust spacing below the label */
+}
+
+/* Ensure the input takes up the container width */
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    width: 100%;
+    padding-right: 40px; /* Space for the icon */
+}
+
+/* Style for the eye icon */
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.2em;
+    user-select: none;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.toggle-password:hover {
+    color: #000;
+}
+
+
+/* ===============================
+   User Indicator Styles (New)
+   =============================== */
+.user-indicator {
+    display: flex; 
+    align-items: center;
+    white-space: nowrap;
+}
+
+.user-indicator .user-welcome {
+    font-size: 1em;
+    font-weight: normal; /* Keep with the sketchy font style */
+    color: #fbf0e8;
+    margin-right: 15px; 
+    line-height: 1;
+    text-shadow: 1px 1px 0 #000;
+}
+
+/* Base style for the indicator buttons */
+.user-indicator .btn-login,
+.user-indicator .btn-logout {
+    padding: 8px 15px; /* Smaller padding */
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: normal; 
+    font-size: 16px; /* Smaller font size */
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
+    cursor: pointer;
+    
+    /* Inherit wobbly border from .btn but adjust shadow/transform */
+    border: 3px solid black; 
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; 
+    box-shadow: 3px 3px 0 #000;
+    transform: translate(0, 0);
+}
+
+.user-indicator .btn-login:hover,
+.user-indicator .btn-logout:hover {
+    box-shadow: 1px 1px 0 #000;
+    transform: translate(2px, 2px);
+}
+
+/* Style for the Login button */
+.user-indicator .btn-login {
+    background-color: #00cc88; /* Green for Login */
+    color: #000;
+}
+.user-indicator .btn-login:hover {
+    background-color: #33e699;
+}
+
+/* Style for the Logout button */
+.user-indicator .btn-logout {
+    background-color: #e74c3c; /* Red for Logout */
+    color: #fff;
+}
+.user-indicator .btn-logout:hover {
+    background-color: #da190b;
+}
+
+/* ===============================
+   Media Queries for Responsiveness
+   =============================== */
+@media (max-width: 800px) {
+    .header {
+        padding: 15px 20px;
+    }
+    .header .title {
+        font-size: 30px;
+    }
+    .all-reviews {
+        padding: 10px;
+    }
+    .review-card {
+        width: 100%;
+        min-width: unset;
+        display: block; /* Stack content vertically on small screens */
+        text-align: center;
+    }
+    .review-card .poster-box {
+        margin: 0 auto 15px;
+    }
+    .review-card .info {
+        padding-left: 0;
+    }
+    .review-card .actions {
+        justify-content: center;
+    }
+}
